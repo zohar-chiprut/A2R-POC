@@ -1,0 +1,9 @@
+{
+  "name": "angular7-cli-node-8",
+  "image": "node:8.16.2",
+  "workspaceFolder": "/workspace",
+  "mounts": ["source=${localWorkspaceFolder},target=/workspace, type=bind"],
+  "customizations": {
+    "vscode": { "extensions": ["dbaeumer.vscode-eslint"] }
+  }
+}
