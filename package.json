@@ -1,6 +1,10 @@
 {
-  "name": "angular-registration-login-example",
-  "version": "0.0.0",
+  "name": "a2r-mf-poc",
+  "version": "0.2.0",
+  "engines": {
+    "node": "= 20.12.2",
+    "pnpm": "= 9.0.4"
+  },
   "type": "module",
   "scripts": {
     "ng": "ng",
