@@ -5,12 +5,12 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '@app/_services';
 
-@Component({templateUrl: 'login.component.html'})
+@Component({templateUrl: 'login.component.html',standalone:false})
 export class LoginComponent implements OnInit {
-    loginForm: FormGroup;
+    loginForm!: FormGroup;
     loading = false;
     submitted = false;
-    returnUrl: string;
+    returnUrl!: string;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
         private alertService: AlertService
     ) {
         // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) { 
-            this.router.navigate(['/']);
+        if (this.authenticationService.currentUserValue) {
+            // this.router.navigate(['/']);
         }
     }
 
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-
+        console.log(`login.component.ts onSubmit() user:${this.f.username.value}, pwd:${this.f.password.value}`)
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                  console.log(`login.component.ts navigate to ${this.returnUrl}`)
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {

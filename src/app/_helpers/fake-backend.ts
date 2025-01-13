@@ -10,7 +10,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // array in local storage for registered users
-        let users: any[] = JSON.parse(localStorage.getItem('users')) || [];
+      let users: any[] = JSON.parse(localStorage.getItem('users') ?? `[]`) || [];
 
         // wrap in delayed observable to simulate server api call
         return of(null).pipe(mergeMap(() => {
@@ -115,7 +115,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             // pass through any requests not handled above
             return next.handle(request);
-            
+
         }))
 
         // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)

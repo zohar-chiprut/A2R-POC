@@ -5,18 +5,19 @@ import { AlertService } from '@app/_services';
 
 @Component({
     selector: 'alert',
-    templateUrl: 'alert.component.html'
+  templateUrl: 'alert.component.html',
+    standalone: false
 })
 
 export class AlertComponent implements OnInit, OnDestroy {
-    private subscription: Subscription;
+    private subscription!: Subscription;
     message: any;
 
     constructor(private alertService: AlertService) { }
 
     ngOnInit() {
-        this.subscription = this.alertService.getMessage().subscribe(message => { 
-            this.message = message; 
+        this.subscription = this.alertService.getMessage().subscribe(message => {
+            this.message = message;
         });
     }
 

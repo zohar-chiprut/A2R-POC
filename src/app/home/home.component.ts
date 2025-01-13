@@ -5,9 +5,9 @@ import { first } from 'rxjs/operators';
 import { User } from '@app/_models';
 import { UserService, AuthenticationService } from '@app/_services';
 
-@Component({ templateUrl: 'home.component.html' })
+@Component({ templateUrl: 'home.component.html',standalone:false })
 export class HomeComponent implements OnInit, OnDestroy {
-    currentUser: User;
+    currentUser!: User;
     currentUserSubscription: Subscription;
     users: User[] = [];
 

@@ -5,9 +5,9 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, UserService, AuthenticationService } from '@app/_services';
 
-@Component({templateUrl: 'register.component.html'})
+@Component({templateUrl: 'register.component.html',standalone:false})
 export class RegisterComponent implements OnInit {
-    registerForm: FormGroup;
+    registerForm!: FormGroup;
     loading = false;
     submitted = false;
 
@@ -17,9 +17,11 @@ export class RegisterComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private userService: UserService,
         private alertService: AlertService
-    ) { 
+    ) {
+      const currentUserValue = this.authenticationService.currentUserValue;
         // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) { 
+        if (currentUserValue && Object.keys(currentUserValue).length > 0) {
+          console.log('redirect to home if already logged in this.authenticationService.currentUserValue:',this.authenticationService.currentUserValue);
             this.router.navigate(['/']);
         }
     }
@@ -49,6 +51,7 @@ export class RegisterComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                  console.log('subscribe Registration successful')
                     this.alertService.success('Registration successful', true);
                     this.router.navigate(['/login']);
                 },
