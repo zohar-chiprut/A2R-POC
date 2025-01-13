@@ -6,13 +6,12 @@
     "pnpm": "= 9.0.4"
   },
   "type": "module",
+  "workspaces": [
+    "packages/*",
+    "react/*"
+  ],
   "scripts": {
-    "ng": "ng",
-    "start": "webpack-dev-server --config webpack.config.dev.js --progress",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "start": "webpack-dev-server --config webpack.config.dev.js --progress"
   },
   "private": true,
   "dependencies": {
